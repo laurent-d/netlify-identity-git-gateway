@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(event) {
   const resultSelector = document.querySelector("#result");
   const filesSelector = document.querySelector("#files");
+  const pathSelector = document.querySelector("#path");
   const saveBtn = document.querySelector("#save");
   const readBtn = document.querySelector("#read");
   const resultContent = resultSelector.innerHTML;
@@ -21,10 +22,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
   });
 
   document.addEventListener("click", function(e) {
-    if (e.target.dataset.name) {
+    if (e.target.dataset.name e.target.dataset.type === "file" ) {
       const fileName = e.target.dataset.name;
       console.log(fileName);
       workingFile = fileName;
+      pathSelector.innerHTML = workingFile;
       getContent(fileName);
     }
   });
@@ -32,6 +34,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   if (netlifyUser) {
     console.log("logged");
     getContent(workingFile);
+    pathSelector.innerHTML = workingFile;
     displayContent();
   } else {
     console.log("not logged");
