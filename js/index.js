@@ -4,10 +4,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   const workingFile = "newfile.txt";
   const user = netlifyIdentity.currentUser();
 
-  loginSelector.addEventListener('click', function () {
-    netlifyIdentity.open()
-  })
-
   netlifyIdentity.on('init', user => console.log('init', user));
 
   netlifyIdentity.on('login', function (user) {
