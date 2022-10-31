@@ -47,9 +47,8 @@ async function fetchData(mypath = "") {
       });
     } else {
       // base64 decode content
-      // data.content = atob(data.content)
       return data;
-      // SRC from : https://medium.com/geekculture/capture-and-display-your-json-data-with-vanilla-javascript-4675f81cfb54
+    }
   })
     .catch(error => error);
 }

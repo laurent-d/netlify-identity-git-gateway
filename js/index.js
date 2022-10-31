@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   });
 
   document.addEventListener("click", function(e) {
-    if (e.target.dataset.name && e.target.dataset.type === "file" ) {
+    if (e.target.dataset.name && e.target.dataset.type === "file") {
       const fileName = e.target.dataset.name;
       console.log(fileName);
       workingFile = fileName;
@@ -48,13 +48,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     resultSelector.innerHTML = html;
   });
 
-  // save data example
-  /*
-  saveData('newfile.txt', 'Some data').then(function(result){
-      console.log(result);
-  });
-  */
-
   function getContent(file) {
     getData(file).then(function(result) {
       console.log(result);
@@ -73,10 +66,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   function displayContent() {
-    fetchData().then(function (result) {
+    fetchData().then(function(result) {
       // console.log(result)
-
-      buildTreeFiles(result));
+      buildTreeFiles(result);
     });
   }
 
@@ -90,5 +82,4 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // return the html
     filesSelector.innerHTML = html;
   }
-
 });
