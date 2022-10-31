@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   getData(workingFile).then(function(result) {
-    console.log(result);
+    // console.log(result);
     const data = result.content;
     const converter = new showdown.Converter();
     const html = converter.makeHtml(data);
@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   function getContent(file) {
     getData(file).then(function(result) {
-      console.log(result);
+      // console.log(result);
       const data = result.content;
       const converter = new showdown.Converter();
       const html = converter.makeHtml(data);
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   function saveContent(file) {
     const dataContent = resultSelector.innerHTML;
     saveData(file, dataContent).then(function(result) {
-      console.log(result);
+      // console.log(result);
     });
   }
 
