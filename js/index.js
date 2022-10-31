@@ -4,8 +4,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
   const saveBtn = document.querySelector('#save');
   const readBtn = document.querySelector('#read');
   const resultContent = resultSelector.innerHTML;
-  const workingFile = "newfile.txt";
   const netlifyUser = netlifyIdentity.currentUser();
+  let workingFile = "newfile.txt";
 
   netlifyIdentity.on('login', function (user) {
     getContent(workingFile);
@@ -20,6 +20,15 @@ document.addEventListener("DOMContentLoaded", function(event) {
     getContent(workingFile);
   });
 
+  document.addEventListener('click', function (e) {
+    if (e.target.dataset.name) {
+      const fileName = e.target.dataset.name;
+      console.log(fileName);
+      workingFile = fileName;
+      getContent(fileName);
+    }
+  });
+
   if (netlifyUser) {
     console.log("logged");
     getContent(workingFile);
@@ -27,7 +36,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
   } else {
     console.log("not logged");
   }
-
 
   getData(workingFile).then(function (result) {
     console.log(result)

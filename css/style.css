@@ -69,3 +69,7 @@ body side {
 body main {
  flex-grow: 1;
 }
+
+a[data-type="dir"] {
+  opacity= 0.5;
+}

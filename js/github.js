@@ -64,22 +64,14 @@ async function fetchData(mypath = '') {
                 // base64 decode content
                 // data.content = atob(data.content)
                 //return data
-
                 // SRC from : https://medium.com/geekculture/capture-and-display-your-json-data-with-vanilla-javascript-4675f81cfb54
                 let html = ''
 
                 for (file of data) {
-                    // start a section element for each album
-                    // html += '<section>';
+
                     html += '<li>';
-                    // create a <div> for each key-value pair
-                    // for (key in file) {
-                    // html += `<div><strong>${key}</strong>: ${file[key]}</div>`
-                    // }
-                    html += `<a data-name="${file["name"]}" >${file["name"]}</a>`
-                    // close off the section
+                    html += `<a data-name="${file["name"]}" data-type="${file["type"]}" >${file["name"]}</a>`
                     html += '</li>';
-                    // html += '</section>';
                 }
                 // return the html
                 return html;
