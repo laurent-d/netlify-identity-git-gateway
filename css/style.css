@@ -63,10 +63,11 @@ div[data-netlify-identity-menu] ul {
 content {
   display: flex;
   gap: 2em;
+  flex-wrap: wrap;
 }
 
 body aside {
-  min-width: 200px;
+  min-width: 12rem;
 }
 
 aside .card {
@@ -75,6 +76,7 @@ aside .card {
 
 body main {
   flex-grow: 1;
+  width: calc( 100% - 15rem);
 }
 
 a[data-type="dir"] {
@@ -92,4 +94,16 @@ a[data-type="file"] {
 
 #files li:not(:last-child) {
   border-bottom: 1px solid var(--grey_light);
+}
+
+@media (max-width: 50em) {
+
+  body aside {
+    width: 100%;
+  }
+
+  body main {
+    width: 100%;
+  }
+
 }
