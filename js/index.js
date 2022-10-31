@@ -1,16 +1,19 @@
 document.addEventListener("DOMContentLoaded", function(event) {
   const resultSelector = document.querySelector('#result');
+  const saveBtn = document.querySelector('#save');
   const resultContent = resultSelector.innerHTML;
   const workingFile = "newfile.txt";
-  const user = netlifyIdentity.currentUser();
-
-  netlifyIdentity.on('init', user => console.log('init', user));
+  const netlifyUser = netlifyIdentity.currentUser();
 
   netlifyIdentity.on('login', function (user) {
     getContent(workingFile);
   });
 
-  if (user) {
+  saveBtn.addEventListener('click', function () {
+    saveContent(workingFile);
+  });
+
+  if (netlifyUser) {
     console.log("logged");
     getContent(workingFile);
   } else {
@@ -44,7 +47,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   function saveContent(file) {
-    saveData(file, 'Some data').then(function (result) {
+    const dataContent = resultContent;
+    saveData(file, dataContent).then(function (result) {
       console.log(result);
     });
   }
