@@ -4,7 +4,7 @@ async function getData(mypath = '') {
     let token = user.token.access_token
     var url = "/.netlify/git/github/contents/" + mypath
     var bearer = 'Bearer ' + token
-    
+
     return fetch(url, {
             method: 'GET',
             withCredentials: true,
@@ -34,6 +34,60 @@ async function getData(mypath = '') {
         })
 
 }
+
+async function fetchData(mypath = '') {
+
+    let user = netlifyIdentity.currentUser()
+    let token = user.token.access_token
+    var url = "/.netlify/git/github/contents/" + mypath
+    var bearer = 'Bearer ' + token
+
+    return fetch(url, {
+            method: 'GET',
+            withCredentials: true,
+            credentials: 'include',
+            headers: {
+                'Authorization': bearer,
+                'Content-Type': 'application/json'
+            }
+        }).then(resp => {
+            return resp.json()
+        }).then(data => {
+
+            if (data.code == 400) {
+
+                netlifyIdentity.refresh().then(function(token) {
+                    getData(mypath)
+                })
+
+            } else {
+                // base64 decode content
+                // data.content = atob(data.content)
+                //return data
+
+                let html = ''
+
+                for (file of data) {
+                    // start a section element for each album
+                    html += '<section>';
+                    // create a <div> for each key-value pair
+                    for (key in file) {
+                    html += `<div><strong>${key}</strong>: ${file[key]}</div>`
+                    }
+                    // close off the section
+                    html += '</section>';
+                }
+                // return the html
+                return html;
+
+            }
+        })
+        .catch(error => {
+            return error
+        })
+
+}
+
 
 async function saveData(mypath, data) {
 

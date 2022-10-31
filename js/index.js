@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(event) {
   const resultSelector = document.querySelector('#result');
+  const filesSelector = document.querySelector('#files');
   const saveBtn = document.querySelector('#save');
   const readBtn = document.querySelector('#read');
   const resultContent = resultSelector.innerHTML;
@@ -8,6 +9,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   netlifyIdentity.on('login', function (user) {
     getContent(workingFile);
+    displayContent();
   });
 
   saveBtn.addEventListener('click', function () {
@@ -21,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   if (netlifyUser) {
     console.log("logged");
     getContent(workingFile);
+    displayContent();
   } else {
     console.log("not logged");
   }
@@ -56,6 +59,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     saveData(file, dataContent).then(function (result) {
       console.log(result);
     });
+  }
+
+  function displayContent() {
+    fetchData().then(function (result) {
+      console.log(result)
+      filesSelector.innerHTML = result;
+    })
   }
 
 });
