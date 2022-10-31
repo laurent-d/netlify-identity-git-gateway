@@ -1,17 +1,21 @@
 document.addEventListener("DOMContentLoaded", function(event) {
 
-const loginSelector = document.querySelector('#login');
-const resultSelector = document.querySelector('#result');
+  const loginSelector = document.querySelector('#login');
+  const resultSelector = document.querySelector('#result');
+  const resultContent = resultSelector.innerHTML;
+  const workingFile = "newfile.txt"
 
-loginSelector.addEventListener('click', function () {
-  netlifyIdentity.open()
-})
+  loginSelector.addEventListener('click', function () {
+    netlifyIdentity.open()
+  })
+
+  netlifyIdentity.on('init', user => console.log('init', user));
 
   netlifyIdentity.on('login', function (user) {
 
     loginSelector.innerHTML = 'Log Out'
 
-    getData('README.md').then(function (result) {
+    getData(workingFile).then(function (result) {
       console.log(result)
       let data = result.content
       var converter = new showdown.Converter(),
