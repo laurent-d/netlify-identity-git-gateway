@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.addEventListener("click", function(e) {
     if (e.target.dataset.name && e.target.dataset.type === "file") {
       const fileName = e.target.dataset.name;
-      console.log(fileName);
+      // console.log(fileName);
       workingFile = fileName;
       pathSelector.innerHTML = workingFile;
       getContent(fileName);
