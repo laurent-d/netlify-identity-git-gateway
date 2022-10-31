@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   function displayContent() {
     fetchData().then(function (result) {
-      console.log(result)
+      // console.log(result)
       filesSelector.innerHTML = result;
     })
   }
