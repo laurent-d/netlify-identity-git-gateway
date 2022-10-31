@@ -1,0 +1,28 @@
+{
+  "name": "cms_git",
+  "version": "",
+  "description": "",
+  "scripts": {
+    "csslint": "yarn run stylelint 'css/**/*.css'",
+    "lint": "yarn run lint 'js/**/*.js'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/11ty/eleventy-base-blog.git"
+  },
+  "author": {
+    "name": "Laurent de Lacerda",
+    "email": "laurent.delacerda@gmail.com",
+    "url": "https://laurent.la/"
+  },
+  "homepage": "",
+  "devDependencies": {
+    "stylelint": "^13.7.2",
+    "stylelint-config-standard": "^20.0.0",
+    "eslint": "^7.9.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-plugin-import": "^2.21.2"
+  },
+  "dependencies": {
+  }
+}

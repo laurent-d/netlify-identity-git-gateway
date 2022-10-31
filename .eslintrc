@@ -1,0 +1,74 @@
+{
+  "extends": "airbnb",
+  "globals": {
+    "window": true,
+    "document": true,
+    "$": true,
+    "videojs": true,
+    "LANG": true,
+    "FormData": true,
+    "alert": true,
+    "OT": true,
+    "initLayoutContainer": true,
+    "navigator": true,
+    "localStorage": true,
+    "Notification": true,
+    "seatsio": true,
+    "toastr": true,
+    "CustomEvent": true
+  },
+  "rules": {
+    "no-var": "error",
+    "quotes": [
+      "error",
+      "double",
+      { "avoidEscape": true }
+    ],
+    "no-plusplus": "off",
+    "func-names": "off",
+    "prefer-arrow-callback": "off",
+    "arrow-parens": ["error", "as-needed"],
+    "max-len" : [
+      "error",
+      {
+        "code": 120,
+        "ignoreComments": true
+      }
+    ],
+    "space-before-function-paren": [
+      "error",
+      "never"
+    ],
+    "prefer-destructuring": [
+      "error", {
+        "array": false
+      }
+    ],
+    "no-continue": "off",
+    "class-methods-use-this": "off",
+    "no-else-return": [
+      "error",
+      {
+        "allowElseIf": true
+      }
+    ],
+    "no-restricted-syntax": "off",
+    "no-use-before-define": "off",
+    "prefer-rest-params": "off",
+    "radix": ["error", "as-needed"],
+    "no-new": "off",
+    "no-unused-expressions": [
+      "error",
+      {
+        "allowTernary": true
+      }
+    ],
+    "no-underscore-dangle": "off",
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+  },
+  "settings": {
+    "react": {
+      "version": "999.999.999"
+    }
+  }
+}
