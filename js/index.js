@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
   const netlifyUser = netlifyIdentity.currentUser();
   let workingFile = "newfile.txt";
 
+  const ignoreFile = ['.eslintrc', '.gitignore', '.stylelintrc', 'package.json', 'yarn.lock'];
+
   netlifyIdentity.on("login", function(user) {
     getContent(workingFile);
     displayContent();
@@ -75,9 +77,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
   function buildTreeFiles(data) {
     let html = "";
     for (file of data) {
-      html += "<li>";
-      html += `<a data-name="${file.name}" data-type="${file.type}" >${file.name}</a>`;
-      html += "</li>";
+      if (ignoreFile.indexOf(file.name)) {
+        html += "<li>";
+        html += `<a data-name="${file.name}" data-type="${file.type}" >${file.name}</a>`;
+        html += "</li>";
+      }
     }
     // return the html
     filesSelector.innerHTML = html;
