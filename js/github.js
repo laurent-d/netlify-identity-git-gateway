@@ -23,9 +23,7 @@ async function getData(mypath = "") {
       return data;
     }
   })
-    .catch(error => {
-      return error
-    })
+    .catch(error => error);
 }
 
 async function fetchData(mypath = "") {
