@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-
-  const loginSelector = document.querySelector('#login');
   const resultSelector = document.querySelector('#result');
   const resultContent = resultSelector.innerHTML;
-  const workingFile = "newfile.txt"
+  const workingFile = "newfile.txt";
+  const user = netlifyIdentity.currentUser();
 
   loginSelector.addEventListener('click', function () {
     netlifyIdentity.open()
@@ -12,41 +11,46 @@ document.addEventListener("DOMContentLoaded", function(event) {
   netlifyIdentity.on('init', user => console.log('init', user));
 
   netlifyIdentity.on('login', function (user) {
+    getContent(workingFile);
+  });
 
-    loginSelector.innerHTML = 'Log Out'
+  if (user) {
+    console.log("logged");
+    getContent(workingFile);
+  } else {
+    console.log("not logged");
+  }
 
-    getData(workingFile).then(function (result) {
+
+  getData(workingFile).then(function (result) {
+    console.log(result)
+    let data = result.content
+    var converter = new showdown.Converter(),
+      html = converter.makeHtml(data)
+    resultSelector.innerHTML = html
+  })
+
+  // save data example
+  /*
+  saveData('newfile.txt', 'Some data').then(function(result){
+      console.log(result);
+  });
+  */
+
+  function getContent(file) {
+    getData(file).then(function (result) {
       console.log(result)
       let data = result.content
       var converter = new showdown.Converter(),
         html = converter.makeHtml(data)
       resultSelector.innerHTML = html
     })
+  }
 
-    // save data example
-    /*
-    saveData('newfile.txt', 'Some data').then(function(result){
-        console.log(result);
+  function saveContent(file) {
+    saveData(file, 'Some data').then(function (result) {
+      console.log(result);
     });
-    */
-
-    function getContent(file) {
-      getData(file).then(function (result) {
-        console.log(result)
-        let data = result.content
-        var converter = new showdown.Converter(),
-          html = converter.makeHtml(data)
-        resultSelector.innerHTML = html
-      })
-    }
-
-    function saveContent(file) {
-      saveData(file, 'Some data').then(function (result) {
-        console.log(result);
-      });
-    }
-
-
-  });
+  }
 
 });
