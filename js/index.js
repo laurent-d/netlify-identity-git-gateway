@@ -1,26 +1,26 @@
 document.addEventListener("DOMContentLoaded", function(event) {
-  const resultSelector = document.querySelector('#result');
-  const filesSelector = document.querySelector('#files');
-  const saveBtn = document.querySelector('#save');
-  const readBtn = document.querySelector('#read');
+  const resultSelector = document.querySelector("#result");
+  const filesSelector = document.querySelector("#files");
+  const saveBtn = document.querySelector("#save");
+  const readBtn = document.querySelector("#read");
   const resultContent = resultSelector.innerHTML;
   const netlifyUser = netlifyIdentity.currentUser();
   let workingFile = "newfile.txt";
 
-  netlifyIdentity.on('login', function (user) {
+  netlifyIdentity.on("login", function(user) {
     getContent(workingFile);
     displayContent();
   });
 
-  saveBtn.addEventListener('click', function () {
+  saveBtn.addEventListener("click", function() {
     saveContent(workingFile);
   });
 
-  readBtn.addEventListener('click', function () {
+  readBtn.addEventListener("click", function() {
     getContent(workingFile);
   });
 
-  document.addEventListener('click', function (e) {
+  document.addEventListener("click", function(e) {
     if (e.target.dataset.name) {
       const fileName = e.target.dataset.name;
       console.log(fileName);
@@ -37,13 +37,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
     console.log("not logged");
   }
 
-  getData(workingFile).then(function (result) {
-    console.log(result)
-    let data = result.content
-    var converter = new showdown.Converter(),
-      html = converter.makeHtml(data)
-    resultSelector.innerHTML = html
-  })
+  getData(workingFile).then(function(result) {
+    console.log(result);
+    const data = result.content;
+    const converter = new showdown.Converter();
+    const html = converter.makeHtml(data);
+    resultSelector.innerHTML = html;
+  });
 
   // save data example
   /*
@@ -53,27 +53,26 @@ document.addEventListener("DOMContentLoaded", function(event) {
   */
 
   function getContent(file) {
-    getData(file).then(function (result) {
-      console.log(result)
-      let data = result.content
-      var converter = new showdown.Converter(),
-        html = converter.makeHtml(data)
-      resultSelector.innerHTML = html
-    })
+    getData(file).then(function(result) {
+      console.log(result);
+      const data = result.content;
+      const converter = new showdown.Converter();
+      const html = converter.makeHtml(data);
+      resultSelector.innerHTML = html;
+    });
   }
 
   function saveContent(file) {
     const dataContent = resultSelector.innerHTML;
-    saveData(file, dataContent).then(function (result) {
+    saveData(file, dataContent).then(function(result) {
       console.log(result);
     });
   }
 
   function displayContent() {
-    fetchData().then(function (result) {
+    fetchData().then(function(result) {
       // console.log(result)
       filesSelector.innerHTML = result;
-    })
+    });
   }
-
 });
