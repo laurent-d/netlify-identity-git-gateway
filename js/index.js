@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", function(event) {
   const resultSelector = document.querySelector('#result');
   const saveBtn = document.querySelector('#save');
+  const readBtn = document.querySelector('#read');
   const resultContent = resultSelector.innerHTML;
   const workingFile = "newfile.txt";
   const netlifyUser = netlifyIdentity.currentUser();
@@ -11,6 +12,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   saveBtn.addEventListener('click', function () {
     saveContent(workingFile);
+  });
+
+  readBtn.addEventListener('click', function () {
+    getContent(workingFile);
   });
 
   if (netlifyUser) {
