@@ -1,7 +1,7 @@
 :root {
   --black: black;
   --grey: rgb(100 116 139);
-  --grey_light: rgb(100 116 139 / .2);
+  --grey_light: rgb(100 116 139 / 0.2);
   --accent: rgb(79 70 229);
   --font_size: 16px;
   --padding_sm: 1em;
@@ -19,10 +19,11 @@ body > * {
   margin-bottom: 1em;
 }
 
-ul, li {
+ul,
+li {
   list-style: none;
   padding: 0;
-  margin:auto 0;
+  margin: auto 0;
 }
 
 div[data-netlify-identity-menu] {
@@ -30,7 +31,7 @@ div[data-netlify-identity-menu] {
   justify-content: end;
 }
 
-div[data-netlify-identity-menu] ul{
+div[data-netlify-identity-menu] ul {
   display: flex;
   gap: 1em;
 }
@@ -55,7 +56,7 @@ div[data-netlify-identity-menu] ul{
 .card {
   border-radius: 0.5rem;
   padding: var(--padding_md);
-  box-shadow: rgb(0 0 0 / 10%) 0px 4px 6px -1px, rgb(0 0 0 / 10%) 0px 2px 4px -2px;
+  box-shadow: rgb(0 0 0 / 10%) 0 4px 6px -1px, rgb(0 0 0 / 10%) 0 2px 4px -2px;
   border: 1px solid var(--grey_light);
 }
 
@@ -64,16 +65,16 @@ content {
   gap: 3em;
 }
 
-body side {
+body aside {
   width: 200px;
 }
 
-side .card {
+aside .card {
   padding: var(--padding_sm);
 }
 
 body main {
- flex-grow: 1;
+  flex-grow: 1;
 }
 
 a[data-type="dir"] {
