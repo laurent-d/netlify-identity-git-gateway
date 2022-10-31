@@ -1,7 +1,7 @@
 const loginSelector = document.querySelector('#login');
 const resultSelector = document.querySelector('#result');
 
-login.addEventListener('click', function () {
+loginSelector.addEventListener('click', function () {
   netlifyIdentity.open()
 })
 
