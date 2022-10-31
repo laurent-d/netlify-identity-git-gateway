@@ -73,9 +73,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   function displayContent() {
-    fetchData().then(function(result) {
+    fetchData().then(function (result) {
       // console.log(result)
-      filesSelector.innerHTML = result;
+
+      buildTreeFiles(result));
     });
   }
+
+  function buildTreeFiles(data) {
+    let html = "";
+    for (file of data) {
+      html += "<li>";
+      html += `<a data-name="${file.name}" data-type="${file.type}" >${file.name}</a>`;
+      html += "</li>";
+    }
+    // return the html
+    filesSelector.innerHTML = html;
+  }
+
 });

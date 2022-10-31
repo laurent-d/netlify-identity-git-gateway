@@ -48,18 +48,8 @@ async function fetchData(mypath = "") {
     } else {
       // base64 decode content
       // data.content = atob(data.content)
-      // return data
+      return data;
       // SRC from : https://medium.com/geekculture/capture-and-display-your-json-data-with-vanilla-javascript-4675f81cfb54
-      let html = "";
-
-      for (file of data) {
-        html += "<li>";
-        html += `<a data-name="${file.name}" data-type="${file.type}" >${file.name}</a>`;
-        html += "</li>";
-      }
-      // return the html
-      return html;
-    }
   })
     .catch(error => error);
 }
