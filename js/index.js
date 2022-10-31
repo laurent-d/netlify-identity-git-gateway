@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   }
 
   function saveContent(file) {
-    const dataContent = resultContent;
+    const dataContent = resultSelector.innerHTML;
     saveData(file, dataContent).then(function (result) {
       console.log(result);
     });
