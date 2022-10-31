@@ -45,6 +45,7 @@ div[data-netlify-identity-menu] ul {
   padding: 0.5em 1em;
   font-size: 1em;
   border-style: solid;
+  cursor: pointer;
 }
 
 .btn-default {
@@ -76,7 +77,7 @@ aside .card {
 
 body main {
   flex-grow: 1;
-  width: calc( 100% - 15rem);
+  width: calc(100% - 15rem);
 }
 
 a[data-type="dir"] {
@@ -97,7 +98,6 @@ a[data-type="file"] {
 }
 
 @media (max-width: 50em) {
-
   body aside {
     width: 100%;
   }
@@ -105,5 +105,4 @@ a[data-type="file"] {
   body main {
     width: 100%;
   }
-
 }
