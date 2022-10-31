@@ -4,11 +4,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
   const pathSelector = document.querySelector("#path");
   const saveBtn = document.querySelector("#save");
   const readBtn = document.querySelector("#read");
-  const resultContent = resultSelector.innerHTML;
   const netlifyUser = netlifyIdentity.currentUser();
   let workingFile = "newfile.txt";
 
-  const ignoreFile = ['.eslintrc', '.gitignore', '.stylelintrc', 'package.json', 'yarn.lock'];
+  const ignoreFile = [".eslintrc", ".gitignore", ".stylelintrc", "package.json", "yarn.lock"];
 
   netlifyIdentity.on("login", function(user) {
     getContent(workingFile);
@@ -77,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   function buildTreeFiles(data) {
     let html = "";
     for (file of data) {
-      if (ignoreFile.indexOf(file.name)) {
+      if (ignoreFile.indexOf(file.name) === -1) {
         html += "<li>";
         html += `<a data-name="${file.name}" data-type="${file.type}" >${file.name}</a>`;
         html += "</li>";
