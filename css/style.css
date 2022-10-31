@@ -4,6 +4,8 @@
   --grey_light: rgb(100 116 139 / .2);
   --accent: rgb(79 70 229);
   --font_size: 16px;
+  --padding_sm: 1em;
+  --padding_md: 2em;
 }
 
 body {
@@ -52,7 +54,7 @@ div[data-netlify-identity-menu] ul{
 
 .card {
   border-radius: 0.5rem;
-  padding: 2em;
+  padding: var(--padding_md);
   box-shadow: rgb(0 0 0 / 10%) 0px 4px 6px -1px, rgb(0 0 0 / 10%) 0px 2px 4px -2px;
   border: 1px solid var(--grey_light);
 }
@@ -66,10 +68,27 @@ body side {
   width: 200px;
 }
 
+side .card {
+  padding: var(--padding_sm);
+}
+
 body main {
  flex-grow: 1;
 }
 
 a[data-type="dir"] {
-  opacity= 0.5;
+  opacity: 0.5;
+}
+
+a[data-type="file"] {
+  cursor: pointer;
+}
+
+#files li a {
+  padding: 0.5em;
+  display: flex;
+}
+
+#files li:not(:last-child) {
+  border-bottom: 1px solid var(--grey_light);
 }
