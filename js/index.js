@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   let isRaw;
 
   const ignoreFile = [".eslintrc", ".gitignore", ".stylelintrc", "package.json", "yarn.lock"];
-  const rawFile = [".html"];
+  const rawFileArr = [".html", ".png"];
 
   netlifyIdentity.on("login", function(user) {
     getContent(workingFile);
@@ -47,15 +47,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
   function getContent(file, type) {
     getData(file, type).then(function(result) {
       const data = result.content;
-
+      console.log(data);
       if (type != "true") {
         console.log("not raw");
         const converter = new showdown.Converter();
         const html = converter.makeHtml(data);
+        resultSelector.style.whiteSpace = "inherit";
         resultSelector.innerHTML = data;
       } else {
         console.log("raw");
-        // resultSelector.textContent = data;
+        resultSelector.style.whiteSpace = "break-spaces";
         resultSelector.innerText = data;
       }
       // resultSelector.textContent = data;
@@ -68,7 +69,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if (type !== "true") {
       dataContent = resultSelector.innerHTML;
     } else {
-      // dataContent = resultSelector.textContent;
       dataContent = resultSelector.innerText;
     }
     saveData(file, dataContent).then(function(result) {
@@ -89,8 +89,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     for (file of data) {
       if (ignoreFile.indexOf(file.name) === -1) {
         const fileName = file.name;
-        let isRawFile = false;
-        if (fileName.includes(rawFile)) { isRawFile = true; }
+        //let isRawFile = false;
+        //if (fileName.includes(rawFile)) { isRawFile = true; }
+
+        let isRawFile = rawFileArr.some(rawFile => fileName.includes(rawFile));
+
+        //console.log({isRawFile});
 
         html += "<li>";
         html += `<a data-name="${file.name}" data-type="${file.type}" data-raw="${isRawFile}" >${file.name}</a>`;
