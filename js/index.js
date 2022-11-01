@@ -71,6 +71,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
     saveData(file, dataContent).then(function(result) {
       // console.log(result);
+      saveNotification();
     });
   }
 
@@ -96,5 +97,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
     // return the html
     filesSelector.innerHTML = html;
+  }
+
+  function saveNotification() {
+    Toastify({
+      text: "Simple JavaScript Toasts",
+      duration: 1000,
+      gravity: "bottom",
+      position: "center",
+      style: {
+        background: "rgb(79 70 229)",
+        color: "white",
+        borderRadius: "0.5rem",
+      },
+    }).showToast();
   }
 });
