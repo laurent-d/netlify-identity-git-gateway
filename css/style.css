@@ -59,6 +59,9 @@ div[data-netlify-identity-menu] ul {
   padding: var(--padding_md);
   box-shadow: rgb(0 0 0 / 10%) 0 4px 6px -1px, rgb(0 0 0 / 10%) 0 2px 4px -2px;
   border: 1px solid var(--grey_light);
+  gap: 1em;
+  display: flex;
+  flex-direction: column;
 }
 
 content {
