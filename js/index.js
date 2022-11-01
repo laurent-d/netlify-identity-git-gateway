@@ -101,8 +101,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   function saveNotification() {
     Toastify({
-      text: "Simple JavaScript Toasts",
-      duration: 1000,
+      text: "File saved 🎉",
+      duration: 2000,
       gravity: "bottom",
       position: "center",
       style: {
