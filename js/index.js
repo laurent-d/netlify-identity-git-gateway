@@ -55,7 +55,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         resultSelector.innerHTML = data;
       } else {
         console.log("raw");
-        resultSelector.textContent = data;
+        // resultSelector.textContent = data;
+        resultSelector.innerText = data;
       }
       // resultSelector.textContent = data;
     });
@@ -67,7 +68,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if (type !== "true") {
       dataContent = resultSelector.innerHTML;
     } else {
-      dataContent = resultSelector.textContent;
+      // dataContent = resultSelector.textContent;
+      dataContent = resultSelector.innerText;
     }
     saveData(file, dataContent).then(function(result) {
       // console.log(result);
