@@ -1,7 +1,8 @@
 :root {
-  --black: rgb(0 0 0);
+  --black: rgb(42 48 58);
   --grey: rgb(100 116 139);
   --grey_light: rgb(100 116 139 / 0.2);
+  --grey_lightest: rgb(100 116 139 / 0.1);
   --accent: rgb(79 70 229);
   --font_size: 16px;
   --padding_sm: 1em;
@@ -84,7 +85,7 @@ body main {
 }
 
 a[data-type="dir"] {
-  opacity: 0.5;
+  color: var(--grey);
 }
 
 a[data-type="file"] {
@@ -99,7 +100,7 @@ a[data-type="file"] {
 }
 
 #files li a:hover {
-  background: var(--grey_light);
+  background: var(--grey_lightest);
 }
 
 #files li:not(:last-child) {
