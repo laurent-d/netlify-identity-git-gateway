@@ -107,6 +107,12 @@ a[data-type="file"] {
   border-bottom: 1px solid var(--grey_light);
 }
 
+[contenteditable] {
+  padding: 1em;
+  border: 1px solid var(--grey_light);
+  border-radius: 0.5em;
+}
+
 @media (max-width: 50em) {
   body aside {
     width: 100%;
