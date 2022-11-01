@@ -6,8 +6,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
   const readBtn = document.querySelector("#read");
   const netlifyUser = netlifyIdentity.currentUser();
   let workingFile = "newfile.txt";
+  let isRaw;
 
   const ignoreFile = [".eslintrc", ".gitignore", ".stylelintrc", "package.json", "yarn.lock"];
+  const rawFile = [".html"];
 
   netlifyIdentity.on("login", function(user) {
     getContent(workingFile);
@@ -15,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   });
 
   saveBtn.addEventListener("click", function() {
-    saveContent(workingFile);
+    saveContent(workingFile, isRaw);
   });
 
   readBtn.addEventListener("click", function() {
@@ -25,42 +27,48 @@ document.addEventListener("DOMContentLoaded", function(event) {
   document.addEventListener("click", function(e) {
     if (e.target.dataset.name && e.target.dataset.type === "file") {
       const fileName = e.target.dataset.name;
-      // console.log(fileName);
+      const fileNameRaw = e.target.dataset.raw;
+      isRaw = e.target.dataset.raw;
       workingFile = fileName;
       pathSelector.innerHTML = workingFile;
-      getContent(fileName);
+      getContent(fileName, fileNameRaw);
     }
   });
 
   if (netlifyUser) {
-    console.log("logged");
+    // console.log("logged");
     getContent(workingFile);
     pathSelector.innerHTML = workingFile;
     displayContent();
   } else {
-    console.log("not logged");
+    // console.log("not logged");
   }
 
-  getData(workingFile).then(function(result) {
-    // console.log(result);
-    const data = result.content;
-    const converter = new showdown.Converter();
-    const html = converter.makeHtml(data);
-    resultSelector.innerHTML = html;
-  });
-
-  function getContent(file) {
-    getData(file).then(function(result) {
-      // console.log(result);
+  function getContent(file, type) {
+    getData(file, type).then(function(result) {
       const data = result.content;
-      const converter = new showdown.Converter();
-      const html = converter.makeHtml(data);
-      resultSelector.innerHTML = html;
+
+      if (type != "true") {
+        console.log("not raw");
+        const converter = new showdown.Converter();
+        const html = converter.makeHtml(data);
+        resultSelector.innerHTML = data;
+      } else {
+        console.log("raw");
+        resultSelector.textContent = data;
+      }
+      // resultSelector.textContent = data;
     });
   }
 
-  function saveContent(file) {
-    const dataContent = resultSelector.innerHTML;
+  function saveContent(file, type) {
+    console.log({ type });
+    let dataContent;
+    if (type !== "true") {
+      dataContent = resultSelector.innerHTML;
+    } else {
+      dataContent = resultSelector.textContent;
+    }
     saveData(file, dataContent).then(function(result) {
       // console.log(result);
     });
@@ -77,8 +85,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
     let html = "";
     for (file of data) {
       if (ignoreFile.indexOf(file.name) === -1) {
+        const fileName = file.name;
+        let isRawFile = false;
+        if (fileName.includes(rawFile)) { isRawFile = true; }
+
         html += "<li>";
-        html += `<a data-name="${file.name}" data-type="${file.type}" >${file.name}</a>`;
+        html += `<a data-name="${file.name}" data-type="${file.type}" data-raw="${isRawFile}" >${file.name}</a>`;
         html += "</li>";
       }
     }
