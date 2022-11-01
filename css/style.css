@@ -1,5 +1,5 @@
 :root {
-  --black: black;
+  --black: rgb(0 0 0);
   --grey: rgb(100 116 139);
   --grey_light: rgb(100 116 139 / 0.2);
   --accent: rgb(79 70 229);
@@ -33,7 +33,7 @@ div[data-netlify-identity-menu] {
 
 div[data-netlify-identity-menu] ul {
   display: flex;
-  gap: 2em;
+  gap: 1em;
 }
 
 .btn {
@@ -91,6 +91,12 @@ a[data-type="file"] {
 #files li a {
   padding: 0.5em;
   display: flex;
+  border-radius: 0.5rem;
+  margin: 0.1em 0;
+}
+
+#files li a:hover {
+  background: var(--grey_light);
 }
 
 #files li:not(:last-child) {
