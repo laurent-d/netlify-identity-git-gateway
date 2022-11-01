@@ -1,7 +1,60 @@
-<h1>
-<span>Test</span>
-</h1>
+<!DOCTYPE html>
+<html>
 
-Hello
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link href="css/style.css" rel="stylesheet" />
 
-<p>Hello</p>
+    <!-- Netlify Identity Widget -->
+    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+
+    <!-- Markdown parser, just for this example -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
+
+    <!-- Toastify JS -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <!-- Github -->
+    <script type="text/javascript" src="js/github.js"></script>
+
+    <script type="text/javascript" src="js/index.js"></script>
+
+</head>
+
+<body>
+
+  <header>
+    <div data-netlify-identity-menu></div>
+  </header>
+
+  <content>
+
+    <aside>
+      <div class="card">
+        <ul id="files">
+        </ul>
+      </div>
+    </aside>
+
+    <main>
+      <div class="card">
+        <div id="path"></div>
+        <div class="container" id="result" contenteditable></div>
+        <footer>
+          <button id="save" class="btn">Save</button>
+          <button id="read" class="btn btn-default">Read</button>
+        </footer>
+      </div>
+    </main>
+
+
+
+  </content>
+
+</body>
+
+</html>
