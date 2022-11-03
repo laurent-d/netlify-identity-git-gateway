@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
   const pathSelector = document.querySelector("#path");
   const saveBtn = document.querySelector("#save");
   const readBtn = document.querySelector("#read");
+  const createBtn = document.querySelector("#create");
+  const createInput = document.querySelector("#filename");
   const netlifyUser = netlifyIdentity.currentUser();
   let workingFile = "newfile.txt";
   let isRaw;
@@ -20,6 +22,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
   saveBtn.addEventListener("click", function() {
     saveContent(workingFile, isRaw);
+  });
+
+  createBtn.addEventListener("click", function() {
+    console.log(createInput.value);
+    const file = createInput.value;
+    const dataContent = createInput.value;
+    saveData(file, dataContent).then(function(result) {
+      console.log(result);
+      //saveNotification();
+    });
   });
 
   readBtn.addEventListener("click", function() {
