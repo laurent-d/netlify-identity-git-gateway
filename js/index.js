@@ -7,9 +7,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
   const netlifyUser = netlifyIdentity.currentUser();
   let workingFile = "newfile.txt";
   let isRaw;
+  let isMedia;
 
   const ignoreFile = [".eslintrc", ".gitignore", ".stylelintrc", "package.json", "yarn.lock"];
   const rawFileArr = [".html", ".png"];
+  const mediaFileArr = [".jpg", ".png"];
 
   netlifyIdentity.on("login", function(user) {
     getContent(workingFile);
@@ -28,10 +30,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     if (e.target.dataset.name && e.target.dataset.type === "file") {
       const fileName = e.target.dataset.name;
       const fileNameRaw = e.target.dataset.raw;
+      const fileNameMedia = e.target.dataset.media;
       isRaw = e.target.dataset.raw;
       workingFile = fileName;
       pathSelector.innerHTML = workingFile;
-      getContent(fileName, fileNameRaw);
+      getContent(fileName, fileNameRaw, fileNameMedia);
     }
   });
 
@@ -44,20 +47,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
     // console.log("not logged");
   }
 
-  function getContent(file, type) {
-    getData(file, type).then(function(result) {
+  function getContent(file, type, media) {
+    getData(file, type, media).then(function(result) {
+      console.log(result);
       const data = result.content;
-      console.log(data);
+      //console.log(data);
       if (type != "true") {
         console.log("not raw");
         const converter = new showdown.Converter();
         const html = converter.makeHtml(data);
         resultSelector.style.whiteSpace = "inherit";
         resultSelector.innerHTML = data;
-      } else {
+      } else if (media != "true") {
         console.log("raw");
         resultSelector.style.whiteSpace = "break-spaces";
         resultSelector.innerText = data;
+      } else {
+        console.log("raw and image");
+        resultSelector.innerHTML = `<img style="max-width:100%" src="${result.download_url}"/>`;
       }
       // resultSelector.textContent = data;
     });
@@ -93,11 +100,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
         //if (fileName.includes(rawFile)) { isRawFile = true; }
 
         let isRawFile = rawFileArr.some(rawFile => fileName.includes(rawFile));
+        let isMediaFile = mediaFileArr.some(mediaFile => fileName.includes(mediaFile));
 
         //console.log({isRawFile});
 
         html += "<li>";
-        html += `<a data-name="${file.name}" data-type="${file.type}" data-raw="${isRawFile}" >${file.name}</a>`;
+        html += `<a data-name="${file.name}" data-type="${file.type}" data-raw="${isRawFile}" data-media="${isMediaFile}">${file.name}</a>`;
         html += "</li>";
       }
     }
