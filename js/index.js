@@ -6,14 +6,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
   const readBtn = document.querySelector("#read");
   const createBtn = document.querySelector("#create");
   const createInput = document.querySelector("#filename");
+  const avatarInput = document.querySelector("#avatar");
   const netlifyUser = netlifyIdentity.currentUser();
   let workingFile = "newfile.txt";
   let isRaw;
   let isMedia;
+  let xxx;
 
   const ignoreFile = [".eslintrc", ".gitignore", ".stylelintrc", "package.json", "yarn.lock"];
-  const rawFileArr = [".html", ".png"];
-  const mediaFileArr = [".jpg", ".png"];
+  const rawFileArr = [".html", ".jpg", ".jpeg", ".png"];
+  const mediaFileArr = [".jpg", ".jpeg", ".png"];
 
   netlifyIdentity.on("login", function(user) {
     getContent(workingFile);
@@ -25,14 +27,33 @@ document.addEventListener("DOMContentLoaded", function(event) {
   });
 
   createBtn.addEventListener("click", function() {
-    console.log(createInput.value);
+    //console.log(createInput.value);
     const file = createInput.value;
-    const dataContent = createInput.value;
+    const dataContent = content = atob(xxx.replace(/^(.+,)/, ''));
+    // https://www.audero.it/blog/2015/10/17/upload-files-on-github-using-github-js/
+
     saveData(file, dataContent).then(function(result) {
       console.log(result);
       //saveNotification();
     });
   });
+
+  avatarInput.addEventListener('change', handleFileSelect, false);
+
+  function handleFileSelect(event) {
+    const reader = new FileReader()
+    reader.onload = handleFileLoad;
+    reader.readAsDataURL(event.target.files[0])
+  }
+
+  function handleFileLoad(event) {
+    console.log(event);
+    xxx = event.target.result
+    console.log({xxx});
+    //document.getElementById('fileContent').textContent = event.target.result;
+  }
+
+
 
   readBtn.addEventListener("click", function() {
     getContent(workingFile);
