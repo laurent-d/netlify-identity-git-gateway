@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", function(event) {
+document.addEventListener("DOMContentLoaded", function() {
   const resultSelector = document.querySelector("#result");
   const filesSelector = document.querySelector("#files");
   const pathSelector = document.querySelector("#path");
@@ -10,14 +10,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
   const netlifyUser = netlifyIdentity.currentUser();
   let workingFile = "newfile.txt";
   let isRaw;
-  let isMedia;
   let newContent;
 
   const ignoreFile = [".eslintrc", ".gitignore", ".stylelintrc", "package.json", "yarn.lock"];
   const rawFileArr = [".html", ".jpg", ".jpeg", ".png"];
   const mediaFileArr = [".jpg", ".jpeg", ".png"];
 
-  netlifyIdentity.on("login", function(user) {
+  netlifyIdentity.on("login", function() {
     getContent(workingFile);
     displayContent();
   });
@@ -27,33 +26,28 @@ document.addEventListener("DOMContentLoaded", function(event) {
   });
 
   createBtn.addEventListener("click", function() {
-    //console.log(createInput.value);
+    // console.log(createInput.value);
     const file = createInput.value;
-    const dataContent = content = atob(newContent.replace(/^(.+,)/, ''));
+    const dataContent = atob(newContent.replace(/^(.+,)/, ""));
     // https://www.audero.it/blog/2015/10/17/upload-files-on-github-using-github-js/
 
-    saveData(file, dataContent).then(function(result) {
-      console.log(result);
-      //saveNotification();
+    saveData(file, dataContent).then(function() {
+      showNotif("File created 🎉");
     });
   });
 
-  avatarInput.addEventListener('change', handleFileSelect, false);
+  avatarInput.addEventListener("change", handleFileSelect, false);
 
   function handleFileSelect(event) {
-    const reader = new FileReader()
-    reader.onload = handleFileLoad;
+    const reader = new FileReader();
     reader.readAsDataURL(event.target.files[0]);
+    reader.onload = handleFileLoad;
   }
 
   function handleFileLoad(event) {
-    console.log(event);
-    newContent = event.target.result
-    console.log({newContent});
-    //document.getElementById('fileContent').textContent = event.target.result;
+    newContent = event.target.result;
+    console.log({ newContent });
   }
-
-
 
   readBtn.addEventListener("click", function() {
     getContent(workingFile);
@@ -84,8 +78,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     getData(file, type, media).then(function(result) {
       console.log(result);
       const data = result.content;
-      //console.log(data);
-      if (type != "true") {
+      // console.log(data);
+      if (type !=== "true") {
         console.log("not raw");
         const converter = new showdown.Converter();
         const html = converter.makeHtml(data);
@@ -113,7 +107,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
     }
     saveData(file, dataContent).then(function(result) {
       // console.log(result);
-      saveNotification();
+      showNotif();
     });
   }
 
@@ -129,14 +123,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
     for (file of data) {
       if (ignoreFile.indexOf(file.name) === -1) {
         const fileName = file.name;
-        //let isRawFile = false;
-        //if (fileName.includes(rawFile)) { isRawFile = true; }
-
-        let isRawFile = rawFileArr.some(rawFile => fileName.includes(rawFile));
-        let isMediaFile = mediaFileArr.some(mediaFile => fileName.includes(mediaFile));
-
-        //console.log({isRawFile});
-
+        // let isRawFile = false;
+        // if (fileName.includes(rawFile)) { isRawFile = true; }
+        const isRawFile = rawFileArr.some(rawFile => fileName.includes(rawFile));
+        const isMediaFile = mediaFileArr.some(mediaFile => fileName.includes(mediaFile));
+        // console.log({isRawFile});
         html += "<li>";
         html += `<a data-name="${file.name}" data-type="${file.type}" data-raw="${isRawFile}" data-media="${isMediaFile}">${file.name}</a>`;
         html += "</li>";
@@ -146,9 +137,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
     filesSelector.innerHTML = html;
   }
 
-  function saveNotification() {
+  function showNotif(msgTxt = "File saved 🎉") {
     Toastify({
-      text: "File saved 🎉",
+      text: msgTxt,
       duration: 2000,
       gravity: "bottom",
       position: "center",
