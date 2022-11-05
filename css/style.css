@@ -72,16 +72,27 @@ content {
 }
 
 body aside {
-  min-width: 12rem;
+  min-width: 20rem;
 }
 
 aside .card {
   padding: var(--padding_sm);
 }
 
+.naw-file {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.naw-file > * {
+  width: fit-content;
+}
+
 body main {
   flex-grow: 1;
-  width: calc(100% - 15rem);
+  width: calc(100% - 22rem);
 }
 
 a[data-type="dir"] {
