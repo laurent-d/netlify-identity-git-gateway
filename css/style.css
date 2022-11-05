@@ -79,14 +79,14 @@ aside .card {
   padding: var(--padding_sm);
 }
 
-.naw-file {
+.new-file {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   gap: 0.5em;
 }
 
-.naw-file > * {
+.new-file > * {
   width: fit-content;
 }
 
