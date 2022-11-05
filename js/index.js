@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   let workingFile = "newfile.txt";
   let isRaw;
   let isMedia;
-  let xxx;
+  let newContent;
 
   const ignoreFile = [".eslintrc", ".gitignore", ".stylelintrc", "package.json", "yarn.lock"];
   const rawFileArr = [".html", ".jpg", ".jpeg", ".png"];
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   createBtn.addEventListener("click", function() {
     //console.log(createInput.value);
     const file = createInput.value;
-    const dataContent = content = atob(xxx.replace(/^(.+,)/, ''));
+    const dataContent = content = atob(newContent.replace(/^(.+,)/, ''));
     // https://www.audero.it/blog/2015/10/17/upload-files-on-github-using-github-js/
 
     saveData(file, dataContent).then(function(result) {
@@ -43,13 +43,13 @@ document.addEventListener("DOMContentLoaded", function(event) {
   function handleFileSelect(event) {
     const reader = new FileReader()
     reader.onload = handleFileLoad;
-    reader.readAsDataURL(event.target.files[0])
+    reader.readAsDataURL(event.target.files[0]);
   }
 
   function handleFileLoad(event) {
     console.log(event);
-    xxx = event.target.result
-    console.log({xxx});
+    newContent = event.target.result
+    console.log({newContent});
     //document.getElementById('fileContent').textContent = event.target.result;
   }
 
