@@ -4,6 +4,9 @@ import showdown from "showdown";
 import { getData, fetchData, saveData } from "./github";
 
 document.addEventListener("DOMContentLoaded", function () {
+
+  netlifyIdentity.init();
+
   const resultSelector = document.querySelector("#result");
   const filesSelector = document.querySelector("#files");
   const pathSelector = document.querySelector("#path");
@@ -21,11 +24,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const rawFileArr = [".html", ".jpg", ".jpeg", ".png"];
   const mediaFileArr = [".jpg", ".jpeg", ".png"];
 
-  netlifyIdentity.init();
-
   netlifyIdentity.on("login", function() {
     getContent(workingFile);
     displayContent();
+    console.log("login");
   });
 
   saveBtn.addEventListener("click", function() {
