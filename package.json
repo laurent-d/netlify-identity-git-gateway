@@ -1,21 +1,15 @@
 {
   "name": "cms_git",
-  "version": "",
+  "version": "1.0.0",
   "description": "",
-  "private": "true",
+  "private": true,
   "scripts": {
     "csslint": "yarn run stylelint 'css/**/*.css'",
-    "lint": "yarn run eslint 'js/*.js'"
+    "lint": "yarn run eslint 'js/*.js'",
+    "build": "webpack"
   },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/11ty/eleventy-base-blog.git"
-  },
-  "author": {
-    "name": "Laurent de Lacerda",
-    "email": "laurent.delacerda@gmail.com",
-    "url": "https://laurent.la/"
-  },
+  "repository": "git://github.com/11ty/eleventy-base-blog.git",
+  "author": "Laurent de Lacerda <laurent.delacerda@gmail.com> (https://laurent.la/)",
   "homepage": "",
   "devDependencies": {
     "eslint": "^7.9.0",
@@ -25,5 +19,17 @@
     "eslint-plugin-react": "^7.31.10",
     "stylelint": "^13.7.2",
     "stylelint-config-standard": "^20.0.0"
+  },
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@tiptap/core": "^2.0.0-beta.202",
+    "@tiptap/starter-kit": "^2.0.0-beta.202",
+    "esbuild-loader": "^2.20.0",
+    "netlify-identity-widget": "^1.9.2",
+    "showdown": "^2.1.0",
+    "toastify-js": "^1.12.0",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
   }
 }

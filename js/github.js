@@ -93,3 +93,5 @@ async function saveData(mypath, data) {
       }));
   });
 }
+
+export { getData, fetchData, saveData };
