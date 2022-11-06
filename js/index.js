@@ -4,7 +4,6 @@ import showdown from "showdown";
 import { getData, fetchData, saveData } from "./github";
 
 document.addEventListener("DOMContentLoaded", function () {
-
   netlifyIdentity.init();
 
   const resultSelector = document.querySelector("#result");
