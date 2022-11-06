@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const netlifyUser = netlifyIdentity.currentUser();
   let workingFile = "newfile.txt";
   let isRaw;
-  let newContent;
+  let newContent = "";
 
   const ignoreFile = [".eslintrc", ".gitignore", ".stylelintrc", "package.json", "yarn.lock"];
   const rawFileArr = [".html", ".jpg", ".jpeg", ".png"];
@@ -127,9 +127,10 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 
   function buildTreeFiles(data) {
-    let html;
-    let file;
+    let html = "";
+    let file = "";
     for (file of data) {
+      console.log({ html });
       if (ignoreFile.indexOf(file.name) === -1) {
         const fileName = file.name;
         // let isRawFile = false;
