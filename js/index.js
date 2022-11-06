@@ -128,6 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function buildTreeFiles(data) {
     let html = "";
+    let file = "";
     for (file of data) {
       if (ignoreFile.indexOf(file.name) === -1) {
         const fileName = file.name;
