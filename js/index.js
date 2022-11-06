@@ -21,6 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
   const rawFileArr = [".html", ".jpg", ".jpeg", ".png"];
   const mediaFileArr = [".jpg", ".jpeg", ".png"];
 
+  netlifyIdentity.init();
+
   netlifyIdentity.on("login", function() {
     getContent(workingFile);
     displayContent();
