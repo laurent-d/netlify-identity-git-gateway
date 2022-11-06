@@ -1,4 +1,9 @@
-document.addEventListener("DOMContentLoaded", function() {
+import netlifyIdentity from "netlify-identity-widget";
+import Toastify from "toastify-js";
+import showdown from "showdown";
+import { getData, fetchData, saveData } from "./github";
+
+document.addEventListener("DOMContentLoaded", function () {
   const resultSelector = document.querySelector("#result");
   const filesSelector = document.querySelector("#files");
   const pathSelector = document.querySelector("#path");
@@ -15,6 +20,8 @@ document.addEventListener("DOMContentLoaded", function() {
   const ignoreFile = [".eslintrc", ".gitignore", ".stylelintrc", "package.json", "yarn.lock"];
   const rawFileArr = [".html", ".jpg", ".jpeg", ".png"];
   const mediaFileArr = [".jpg", ".jpeg", ".png"];
+
+  netlifyIdentity.init();
 
   netlifyIdentity.on("login", function() {
     getContent(workingFile);
@@ -79,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log(result);
       const data = result.content;
       // console.log(data);
-      if (type !=== "true") {
+      if (type !== "true") {
         console.log("not raw");
         const converter = new showdown.Converter();
         const html = converter.makeHtml(data);
