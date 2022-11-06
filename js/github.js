@@ -1,3 +1,5 @@
+import netlifyIdentity from "netlify-identity-widget";
+
 async function getData(mypath = "") {
   const user = netlifyIdentity.currentUser();
   const token = user.token.access_token;
