@@ -3,7 +3,7 @@ import Toastify from "toastify-js";
 import showdown from "showdown";
 import { getData, fetchData, saveData } from "./github";
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function() {
   netlifyIdentity.init();
 
   const resultSelector = document.querySelector("#result");
@@ -127,8 +127,8 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   function buildTreeFiles(data) {
-    let html = "";
-    let file = "";
+    let html;
+    let file;
     for (file of data) {
       if (ignoreFile.indexOf(file.name) === -1) {
         const fileName = file.name;
