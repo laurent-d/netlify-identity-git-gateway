@@ -13,6 +13,7 @@
   "author": "Laurent de Lacerda <laurent.delacerda@gmail.com> (https://laurent.la/)",
   "homepage": "",
   "devDependencies": {
+    "css-loader": "^6.7.1",
     "dotenv-webpack": "^8.0.1",
     "esbuild-loader": "^2.20.0",
     "eslint": "^7.9.0",
@@ -20,6 +21,10 @@
     "eslint-plugin-import": "^2.21.2",
     "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-react": "^7.31.10",
+    "postcss-loader": "^7.0.1",
+    "postcss-preset-env": "^7.8.2",
+    "sass-loader": "^13.1.0",
+    "style-loader": "^3.3.1",
     "stylelint": "^13.7.2",
     "stylelint-config-standard": "^20.0.0",
     "webpack": "^5.74.0",
@@ -29,8 +34,16 @@
   "license": "MIT",
   "dependencies": {
     "@tiptap/core": "^2.0.0-beta.202",
+    "@tiptap/extension-document": "^2.0.0-beta.202",
+    "@tiptap/extension-dropcursor": "^2.0.0-beta.202",
+    "@tiptap/extension-image": "^2.0.0-beta.202",
+    "@tiptap/extension-paragraph": "^2.0.0-beta.202",
+    "@tiptap/extension-placeholder": "^2.0.0-beta.202",
+    "@tiptap/extension-text": "^2.0.0-beta.202",
     "@tiptap/starter-kit": "^2.0.0-beta.202",
     "netlify-identity-widget": "^1.9.2",
+    "node-sass": "^7.0.3",
+    "postcss": "^8.4.18",
     "showdown": "^2.1.0",
     "toastify-js": "^1.12.0"
   }

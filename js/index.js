@@ -3,6 +3,17 @@ import Toastify from "toastify-js";
 import showdown from "showdown";
 import { getData, fetchData, saveData } from "./github";
 
+import { Editor } from '@tiptap/core';
+import StarterKit from '@tiptap/starter-kit';
+import Document from '@tiptap/extension-document';
+import Placeholder from '@tiptap/extension-placeholder';
+import Paragraph from '@tiptap/extension-paragraph';
+import Text from '@tiptap/extension-text';
+import Image from '@tiptap/extension-image';
+import Dropcursor from '@tiptap/extension-dropcursor'
+
+import '../css/style.js';
+
 document.addEventListener("DOMContentLoaded", function() {
   netlifyIdentity.init();
 
@@ -27,6 +38,25 @@ document.addEventListener("DOMContentLoaded", function() {
     getContent(workingFile);
     displayContent();
     console.log("login");
+  });
+
+  const editor = new Editor({
+    element: document.querySelector('.element'),
+    content: '<p>Hello World!</p>',
+    extensions: [
+      //Dropcursor,
+      Image,
+      StarterKit,
+      Placeholder.configure({
+        placeholder: ({ node }) => {
+          if (node.type.name === 'heading') {
+            return 'What’s the title?'
+          }
+
+          return 'Can you add some further context?'
+        },
+      }),
+    ],
   });
 
   saveBtn.addEventListener("click", function() {
@@ -84,7 +114,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   function getContent(file, type, media) {
     getData(file, type, media).then(function(result) {
-      console.log(result);
+      // console.log(result);
       const data = result.content;
       // console.log(data);
       if (type !== "true") {
@@ -93,13 +123,16 @@ document.addEventListener("DOMContentLoaded", function() {
         const html = converter.makeHtml(data);
         resultSelector.style.whiteSpace = "inherit";
         resultSelector.innerHTML = data;
+        editor.commands.setContent(html);
       } else if (media != "true") {
         console.log("raw");
         resultSelector.style.whiteSpace = "break-spaces";
         resultSelector.innerText = data;
+        editor.commands.setContent(data);
       } else {
         console.log("raw and image");
         resultSelector.innerHTML = `<img style="max-width:100%" src="${result.download_url}"/>`;
+        editor.commands.setContent(`<img style="max-width:100%" src="${result.download_url}"/>`);
       }
       // resultSelector.textContent = data;
     });
@@ -130,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let html = "";
     let file = "";
     for (file of data) {
-      console.log({ html });
+      // console.log({ html });
       if (ignoreFile.indexOf(file.name) === -1) {
         const fileName = file.name;
         // let isRawFile = false;
@@ -160,4 +193,5 @@ document.addEventListener("DOMContentLoaded", function() {
       },
     }).showToast();
   }
+
 });

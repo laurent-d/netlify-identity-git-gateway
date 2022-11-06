@@ -58,7 +58,7 @@ div[data-netlify-identity-menu] ul {
 .card {
   border-radius: 0.5rem;
   padding: var(--padding_md);
-  box-shadow: rgb(0 0 0 / 10%) 0 4px 6px -1px, rgb(0 0 0 / 10%) 0 2px 4px -2px;
+  /* box-shadow: rgb(0 0 0 / 10%) 0 4px 6px -1px, rgb(0 0 0 / 10%) 0 2px 4px -2px; */
   border: 1px solid var(--grey_light);
   gap: 1em;
   display: flex;
@@ -93,6 +93,9 @@ aside .card {
 body main {
   flex-grow: 1;
   width: calc(100% - 22rem);
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
 }
 
 a[data-type="dir"] {
@@ -118,7 +121,8 @@ a[data-type="file"] {
   border-bottom: 1px solid var(--grey_light);
 }
 
-[contenteditable] {
+.container,
+.element .ProseMirror{
   padding: 1em;
   border: 1px solid var(--grey_light);
   border-radius: 0.5em;
