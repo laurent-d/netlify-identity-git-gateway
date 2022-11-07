@@ -18,4 +18,13 @@
       outline: 3px solid #68CEF8;
     }
   }
+
+  /* Placeholder (on every new line) */
+  .is-empty::before {
+    content: attr(data-placeholder);
+    float: left;
+    color: #ced4da;
+    pointer-events: none;
+    height: 0;
+  }
 }

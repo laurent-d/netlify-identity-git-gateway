@@ -47,14 +47,24 @@ document.addEventListener("DOMContentLoaded", function() {
     console.log("login");
   });
 
+  const CustomDocument = Document.extend({
+    content: 'heading block*',
+  })
+
   const editor = new Editor({
     element: document.querySelector('.element'),
     content: '<p>Hello World!</p>',
     extensions: [
+      CustomDocument,
       //Dropcursor,
       Image,
-      StarterKit,
+      StarterKit.configure({
+        document: false,
+      }),
       Placeholder.configure({
+        // Use a placeholder:
+        //placeholder: 'Write something …',
+        // Use different placeholders depending on the node type:
         placeholder: ({ node }) => {
           if (node.type.name === 'heading') {
             return 'What’s the title?'
