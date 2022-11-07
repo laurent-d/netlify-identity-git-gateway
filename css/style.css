@@ -49,6 +49,11 @@ div[data-netlify-identity-menu] ul {
   cursor: pointer;
 }
 
+.btn.btn-sm {
+  padding: 0.25em .5em;
+  font-size: .8em;
+}
+
 .btn-default {
   background-color: white;
   border-color: var(--grey);

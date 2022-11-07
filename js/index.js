@@ -10,7 +10,9 @@ import Placeholder from '@tiptap/extension-placeholder';
 import Paragraph from '@tiptap/extension-paragraph';
 import Text from '@tiptap/extension-text';
 import Image from '@tiptap/extension-image';
-import Dropcursor from '@tiptap/extension-dropcursor'
+import Dropcursor from '@tiptap/extension-dropcursor';
+import FloatingMenu from '@tiptap/extension-floating-menu';
+import BubbleMenu from '@tiptap/extension-bubble-menu'
 
 import '../css/style.js';
 
@@ -22,6 +24,11 @@ document.addEventListener("DOMContentLoaded", function() {
   const pathSelector = document.querySelector("#path");
   const saveBtn = document.querySelector("#save");
   const readBtn = document.querySelector("#read");
+  const boldBtn = document.querySelector("#bold");
+  const italicBtn = document.querySelector("#italic");
+  const h1Btn = document.querySelector("#h1");
+  const h2Btn = document.querySelector("#h2");
+  const paraBtn = document.querySelector("#para");
   const createBtn = document.querySelector("#create");
   const createInput = document.querySelector("#filename");
   const avatarInput = document.querySelector("#avatar");
@@ -56,6 +63,12 @@ document.addEventListener("DOMContentLoaded", function() {
           return 'Can you add some further context?'
         },
       }),
+      FloatingMenu.configure({
+        element: document.querySelector('.floating-menu'),
+      }),
+      BubbleMenu.configure({
+        element: document.querySelector('.bubble-menu'),
+      }),
     ],
   });
 
@@ -72,6 +85,35 @@ document.addEventListener("DOMContentLoaded", function() {
     saveData(file, dataContent).then(function() {
       showNotif("File created 🎉");
     });
+  });
+
+  // Bubble menu
+
+  boldBtn.addEventListener("click", function() {
+    editor.chain().focus().toggleBold().run();
+    console.log("bold");
+  });
+
+  italicBtn.addEventListener("click", function() {
+    editor.chain().focus().toggleItalic().run();
+    console.log("italic");
+  });
+
+  // Floating menu
+
+  h1Btn.addEventListener("click", function() {
+    editor.chain().focus().toggleHeading({ level: 1 }).run();
+    console.log("bold");
+  });
+
+  h2Btn.addEventListener("click", function() {
+    editor.chain().focus().toggleHeading({ level: 2 }).run();
+    console.log("italic");
+  });
+
+  paraBtn.addEventListener("click", function() {
+    editor.chain().focus().toggleBulletList().run();
+    console.log("italic");
   });
 
   avatarInput.addEventListener("change", handleFileSelect, false);
