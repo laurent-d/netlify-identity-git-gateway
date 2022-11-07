@@ -79,7 +79,7 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log(result);
       const data = result.content;
       // console.log(data);
-      if (type !=== "true") {
+      if (type !== "true") {
         console.log("not raw");
         const converter = new showdown.Converter();
         const html = converter.makeHtml(data);
