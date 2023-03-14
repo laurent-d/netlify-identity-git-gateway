@@ -20,7 +20,7 @@ async function getData(mypath = "") {
       "Content-Type": "application/json",
     },
   }).then(resp => resp.json()).then(data => {
-    if (data.code == 400) {
+    if (data.code === 400) {
       netlifyIdentity.refresh().then(function(token) {
         getData(mypath);
       });
@@ -48,7 +48,7 @@ async function fetchData(mypath = "") {
       "Content-Type": "application/json",
     },
   }).then(resp => resp.json()).then(data => {
-    if (data.code == 400) {
+    if (data.code === 400) {
       netlifyIdentity.refresh().then(function(token) {
         getData(mypath);
       });
@@ -87,7 +87,7 @@ async function saveData(mypath, data) {
         "Content-Type": "application/json",
       },
     }).then(resp => resp.json()).then(data => {
-      if (data.code == 400) {
+      if (data.code === 400) {
         netlifyIdentity.refresh().then(function(token) {
           saveData(mypath);
         });

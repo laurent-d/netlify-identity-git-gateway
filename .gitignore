@@ -2,8 +2,12 @@
 */**/dist/
 builds/
 node_modules
-.env
 dist/
 dist/app.bundle.js
+.idea
+keyfile.json
+./etm-local-config.json
+./etm-production-config.json
+.env
 yarn-error.log
 dist/app.bundle.js
