@@ -1,7 +1,14 @@
+import netlifyIdentity from "netlify-identity-widget";
+
+let netlifyAddresse = "";
+if (process.env.NETLIFY_ADDRESSE) {
+  netlifyAddresse = process.env.NETLIFY_ADDRESSE;
+}
+
 async function getData(mypath = "") {
   const user = netlifyIdentity.currentUser();
   const token = user.token.access_token;
-  const url = `/.netlify/git/github/contents/${mypath}`;
+  const url = `${netlifyAddresse}/.netlify/git/github/contents/${mypath}`;
   const bearer = `Bearer ${token}`;
 
   return fetch(url, {
@@ -29,7 +36,7 @@ async function getData(mypath = "") {
 async function fetchData(mypath = "") {
   const user = netlifyIdentity.currentUser();
   const token = user.token.access_token;
-  const url = `/.netlify/git/github/contents/${mypath}`;
+  const url = `${netlifyAddresse}/.netlify/git/github/contents/${mypath}`;
   const bearer = `Bearer ${token}`;
 
   return fetch(url, {
@@ -68,7 +75,7 @@ async function saveData(mypath, data) {
       opts.sha = curfile.sha;
     }
 
-    const url = `/.netlify/git/github/contents/${mypath}`;
+    const url = `${netlifyAddresse}/.netlify/git/github/contents/${mypath}`;
     const bearer = `Bearer ${token}`;
     return fetch(url, {
       body: JSON.stringify(opts),
@@ -93,3 +100,5 @@ async function saveData(mypath, data) {
       }));
   });
 }
+
+export { getData, fetchData, saveData };

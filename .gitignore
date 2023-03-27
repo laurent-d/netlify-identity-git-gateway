@@ -1,7 +1,9 @@
 */**/node_modules
-*/**/dist
+*/**/dist/
 builds/
 node_modules
+dist/
+dist/app.bundle.js
 .idea
 keyfile.json
 ./etm-local-config.json

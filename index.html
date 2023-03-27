@@ -5,24 +5,7 @@
     <meta charset="UTF-8">
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-    <link href="css/style.css" rel="stylesheet" />
-
-    <!-- Netlify Identity Widget -->
-    <script type="text/javascript" src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
-
-    <!-- Markdown parser, just for this example -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.9.1/showdown.min.js"></script>
-
-    <!-- Toastify JS -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
-
-    <!-- Github -->
-    <script type="text/javascript" src="js/github.js"></script>
-
-    <script type="text/javascript" src="js/index.js"></script>
-
+    <script type="text/javascript" src="dist/app.bundle.js"></script>
 </head>
 
 <body>
@@ -30,6 +13,16 @@
   <header>
     <div data-netlify-identity-menu></div>
   </header>
+
+  <div class="floating-menu">
+    <button id="h1" class="btn btn-sm btn-primary">H1</button>
+    <button id="h2" class="btn btn-sm btn-primary">H2</button>
+    <button id="para" class="btn btn-sm btn-primary">List</button>
+  </div>
+  <div class="bubble-menu">
+    <button id="bold" class="btn btn-sm btn-primary">Bold</button>
+    <button id="italic" class="btn btn-sm btn-primary">Italic</button>
+  </div>
 
   <content>
 
@@ -54,6 +47,16 @@
           <button id="read" class="btn btn-default">Read</button>
         </footer>
       </div>
+
+      <div class="card">
+        <div id="path-tiptap"></div>
+        <div class="element"></div>
+        <footer>
+          <button id="save-tiptap" class="btn">Save</button>
+          <button id="read-tiptap" class="btn btn-default">Read</button>
+        </footer>
+      </div>
+
     </main>
 
 
