@@ -1,0 +1,3 @@
+<pre><code>&lt;p&gt;This is a basic example of implementing images. Drag to re-order.&lt;/p&gt;
+      &lt;img src="https://placehold.co/600x400" /&gt;
+      &lt;img src="https://placehold.co/800x400" /&gt;</code></pre>
