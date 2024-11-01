@@ -1,0 +1,30 @@
+/* Basic editor styles */
+.ProseMirror {
+  > * + * {
+    margin-top: 0.75em;
+  }
+
+  ul,
+  ol {
+    padding: 0 1rem;
+    li { list-style: disc; }
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+
+    &.ProseMirror-selectednode {
+      outline: 3px solid #68CEF8;
+    }
+  }
+
+  /* Placeholder (on every new line) */
+  .is-empty::before {
+    content: attr(data-placeholder);
+    float: left;
+    color: #ced4da;
+    pointer-events: none;
+    height: 0;
+  }
+}
