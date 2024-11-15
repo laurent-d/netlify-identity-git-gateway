@@ -47,5 +47,5 @@ Speedlify is intended as a stepping stone to more robust performance monitoring 
 - SpeedCurve
 - Calibre
 - DebugBear
-- 
-- ![](https://www.netlify.com/img/deploy/button.svg)
+
+![](https://www.netlify.com/img/deploy/button.svg)
